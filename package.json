@@ -1,7 +1,15 @@
 {
   "name": "create-express-minco",
   "version": "1.0.0",
-  "description": "Reusable Express.js backend app with slight minco modifications.",
+  "description": "A modern Express.js project generator with TailwindCSS, EJS, ESModules, and JWT auth.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haydar-hilmy/create-express-minco.git"
+  },
+  "bugs": {
+    "url": "https://github.com/haydar-hilmy/create-express-minco/issues"
+  },
+  "homepage": "https://github.com/haydar-hilmy/create-express-minco#readme",
   "bin": {
     "create-express-minco": "./index.js"
   },
