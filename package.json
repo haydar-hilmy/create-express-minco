@@ -1,0 +1,28 @@
+{
+  "name": "create-express-minco",
+  "version": "1.0.0",
+  "description": "Reusable Express.js backend app with slight minco modifications.",
+  "bin": {
+    "create-express-minco": "./index.js"
+  },
+  "type": "module",
+  "keywords": [
+    "express",
+    "cli",
+    "template",
+    "create",
+    "backend",
+    "architecture",
+    "frontend",
+    "modifications",
+    "modification"
+  ],
+  "author": "Haydar Hilmy A.",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}
