@@ -49,6 +49,10 @@ app.use((err, req, res, next) => {
     stack: req.app.get('env') === 'development' ? err.stack : null,
   };
 
+  const statusCode = err.status || 500;
+
+  console.error(`\x1b[37m\x1b[40m${new Date().toISOString()}\x1b[0m  \x1b[31m${statusCode}\x1b[0m → ${err.message}`);
+
   res.status(err.status || 500);
   res.render('error');
 });
