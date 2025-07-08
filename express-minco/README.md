@@ -96,6 +96,6 @@ MIT © [haydar hilmy](https://github.com/haydar-hilmy)
 
 * [Express Generator](https://expressjs.com/en/starter/generator.html)
 * [Laravel](https://laravel.com)
-* [CodeIgniter4](https://codeigniter.com)
+* [CodeIgniter](https://codeigniter.com)
 
 ---

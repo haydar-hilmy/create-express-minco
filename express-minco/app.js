@@ -5,8 +5,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
+import coreRouter from './routes/index.js';
 import { setupLiveReload } from './middleware/core/liveReload.js';
 import { logRequest } from './middleware/core/logRequest.js';
 import dotenv from 'dotenv';
@@ -30,8 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', coreRouter);
 
 app.use((req, res, next) => {
   res.locals.env = req.app.get('env');
