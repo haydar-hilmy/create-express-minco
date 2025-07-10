@@ -1,0 +1,18 @@
+# App Config
+PROJECT_NAME="Express MVC"
+PORT=3000
+# development / production
+NODE_ENV=development
+
+
+# API Config
+API_BASE_URL=""
+API_KEY=""
+
+
+# DB Config
+DB_HOST=""
+DB_PORT=3306
+DB_USER="root"
+DB_PASS=""
+DB_NAME=""
