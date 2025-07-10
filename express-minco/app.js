@@ -4,9 +4,9 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import coreRouter from "./routes/index.js";
-import { setupLiveReload } from "./middleware/core/liveReload.js";
-import { logRequest } from "./middleware/core/logRequest.js";
+import coreRouter from "./routes/index.route.js";
+import { setupLiveReload } from "./middleware/core/live-reload.middleware.js";
+import { logRequest } from "./middleware/core/log-request.middleware.js";
 import dotenv from "dotenv";
 import expressEjsLayouts from "express-ejs-layouts";
 
@@ -21,6 +21,7 @@ setupLiveReload(app);
 console.log("mode: ", app.get("env"));
 app.use(logRequest);
 
+// SET View Engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 

@@ -629,12 +629,12 @@ video {
   margin-top: 2.5rem;
 }
 
-.mt-6 {
-  margin-top: 1.5rem;
-}
-
 .mt-4 {
   margin-top: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
 }
 
 .inline-block {
@@ -984,8 +984,8 @@ video {
   transition-delay: 100ms;
 }
 
-.delay-200 {
-  transition-delay: 200ms;
+.delay-1000 {
+  transition-delay: 1000ms;
 }
 
 .delay-300 {
@@ -994,10 +994,6 @@ video {
 
 .delay-500 {
   transition-delay: 500ms;
-}
-
-.delay-1000 {
-  transition-delay: 1000ms;
 }
 
 .delay-700 {
