@@ -1,58 +1,132 @@
 <div class="max-w-4xl mx-auto text-gray-200 space-y-12">
   <h1 class="text-4xl md:text-5xl font-bold mb-6 text-center animate-fade-in">Documentation</h1>
 
-  <!-- Section 1 -->
   <section class="animate-fade-in delay-100">
     <h2 class="text-2xl font-semibold mb-2">📦 Installation</h2>
     <p class="text-gray-300 mb-2">To install the package, run the following command:</p>
     <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>
-npm i create-express-minco
+npx create-express-minco my-app
 </code></pre>
   </section>
 
-  <!-- Section 2 -->
-  <section class="animate-fade-in delay-200">
-    <h2 class="text-2xl font-semibold mb-2">🚀 Getting Started</h2>
-    <p class="text-gray-300 mb-2">Once installed, create a new instance:</p>
-    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm">
-        <code>
-const app = require('express')();
-const { bootstrap } = require('express-mvc-starter');
-
-bootstrap(app);
-</code>
-</pre>
-  </section>
-
-  <!-- Section 3 -->
   <section class="animate-fade-in delay-300">
     <h2 class="text-2xl font-semibold mb-2">🗂 Folder Structure</h2>
     <p class="text-gray-300 mb-2">This package follows MVC structure like Laravel or CodeIgniter:</p>
-    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>├── controllers/
-├── models/
-├── views/
-├── routes/
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>
+├── bin/
 ├── config/
-└── public/</code></pre>
+├── controllers/
+├── middleware/
+├── models/
+├── public/
+├── routes/
+└── views/
+</code></pre>
   </section>
 
-  <!-- Section 4 -->
   <section class="animate-fade-in delay-500">
     <h2 class="text-2xl font-semibold mb-2">📘 Example Route</h2>
     <p class="text-gray-300 mb-2">Define routes using the MVC approach:</p>
-    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>// routes/web.js
-router.get('/', HomeController.index);</code></pre>
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>
+// routes/index.js
+router.get('/', HomeController);</code></pre>
   </section>
 
-  <!-- Section 5 -->
+  <section class="animate-fade-in delay-700">
+    <h2 class="text-2xl font-semibold mb-2">🧠 Controller Usage</h2>
+    <p class="text-gray-300 mb-2">
+      Controllers are functions that handle request logic and response rendering. You can define them in the <code>controllers/</code> directory.
+    </p>
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>
+// controllers/indexController.js
+export const HomeController = (req, res) => {
+  res.render("home", {
+    title: "Express Minco",
+    layout: false,
+  });
+};
+  </code></pre>
+  </section>
+
+  <section class="animate-fade-in delay-800">
+    <h2 class="text-2xl font-semibold mb-2">🚦 Route Configuration</h2>
+    <p class="text-gray-300 mb-2">
+      Routes define the URL paths and connect them to controllers. Routes are registered in the <code>routes/</code> folder and loaded in <code>app.js</code>.
+    </p>
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>
+// routes/index.js
+import express from "express";
+import { HomeController } from "../controllers/indexController.js";
+const router = express.Router();
+
+router.get("/", HomeController);
+
+export default router;
+  </code></pre>
+  </section>
+
+  <section class="animate-fade-in delay-900">
+    <h2 class="text-2xl font-semibold mb-2">🧩 Layout Integration</h2>
+    <p class="text-gray-300 mb-2">
+      Layouts help you reuse a common structure across multiple pages. Layout support is configured using <code>express-ejs-layouts</code>.
+    </p>
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>
+// app.js
+app.use(expressEjsLayouts);
+app.set("layout", "layouts/main");
+  </code></pre>
+
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm mt-4"><code>
+// views/layouts/main.ejs
+&lt;body&gt;
+  &lt;%- include('../partials/header') %&gt;
+  &lt;main&gt;&lt;%- body %&gt;&lt;/main&gt;
+  &lt;%- include('../partials/footer') %&gt;
+&lt;/body&gt;
+  </code></pre>
+  </section>
+
+  <section class="animate-fade-in delay-1000">
+    <h2 class="text-2xl font-semibold mb-2">🔗 Partials (Header & Footer)</h2>
+    <p class="text-gray-300 mb-2">
+      Partials are reusable UI components. They're included in the main layout to maintain consistency across pages.
+    </p>
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>
+// views/partials/header.ejs
+&lt;header class="py-4 px-6 bg-gray-800 text-white text-xl font-bold"&gt;
+  Express Minco 🚀
+&lt;/header&gt;
+  </code></pre>
+
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm mt-4"><code>
+// views/partials/footer.ejs
+&lt;footer class="py-4 px-6 bg-gray-800 text-gray-400 text-sm text-center"&gt;
+  &copy; 2025 Express Minco. All rights reserved.
+&lt;/footer&gt;
+  </code></pre>
+  </section>
+
   <section class="animate-fade-in delay-500">
     <h2 class="text-2xl font-semibold mb-2">⚙️ Configuration</h2>
     <p class="text-gray-300 mb-2">You can configure environment, port, and more using the `.env` file:</p>
     <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm">
         <code>
+# App Config
+PROJECT_NAME="Express MVC"
 PORT=3000
-PROJECT_NAME="Express Minco"
+# development / production
 NODE_ENV=development
+
+# API Config
+API_BASE_URL=""
+API_KEY=""
+
+# DB Config
+DB_HOST=""
+DB_PORT=3306
+DB_USER="root"
+DB_PASS=""
+DB_NAME=""
         </code>
     </pre>
   </section>

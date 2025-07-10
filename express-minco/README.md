@@ -1,101 +1,136 @@
-# 🚀 create-express-minco
+# 📄 Documentation
 
-**Create an Express.js project scaffold with modern conventions, MVC structure, ES6 support, and built-in JWT authentication.**  
-Inspired by frameworks like **Laravel** and **CodeIgniter4**, this template merges backend and frontend into one clean, scalable folder.
+## 📦 Installation
 
----
-
-## 📦 Features
-
-✅ Built with [Express Generator](https://expressjs.com/en/starter/generator.html)
-✅ Uses **ES6 module syntax** instead of CommonJS  
-✅ TailwindCSS for styling
-✅ MVC-style folder structure  
-✅ Ready-to-use project structure  
-✅ Fully customizable
-✅ Nodemon live reload server
-✅ Perfect for REST APIs or fullstack hybrid apps  
-✅ Built-in **Login system** with **JWT authentication**  (soon)
-
----
-
-## 📁 Folder Structure
-
-```
-
-my-app/
-├── app.js
-├── bin/
-├── public/
-│   └── ...
-├── routes/
-│   └── index.js
-├── views/
-│   └── ...
-├── controllers/
-│   └── ...
-├── models/
-│   └── ...
-├── middleware/
-│   └── auth.js
-├── .env
-└── package.json
-
-````
-
----
-
-## 🚀 Getting Started
-
-### 📥 1. Create a new project
+To install the template, run the following command:
 
 ```bash
 npx create-express-minco my-app
-````
-
-> This will create a `my-app/` folder with all the necessary files and dependencies.
-
----
-
-### ▶️ 2. Run project
-
-```bash
-cd my-app
-npm start
 ```
 
 ---
 
-### 🔑 3. Login API (soon)
+## 🗂 Folder Structure
+
+This template follows MVC structure like Laravel or CodeIgniter:
+
+```text
+├── bin/
+├── config/
+├── controllers/
+├── middleware/
+├── models/
+├── public/
+├── routes/
+└── views/
+```
 
 ---
 
-## 🛠️ Customization
+## 📘 Example Route
 
-* Add a route in routes/
-* Add a new controller in controllers/
-* Configure middleware or authentication in middleware/
-* Edit the frontend page in views/ (using the default template engine from express-generator, such as Pug)
+Define routes using the MVC approach:
 
----
-
-## 📦 Requirements
-
-* Node.js v18 or latest
-* NPM atau Yarn
+```js
+// routes/index.js
+router.get('/', HomeController);
+```
 
 ---
 
-## 📜 License
+## 🧠 Controller Usage
 
-MIT © [haydar hilmy](https://github.com/haydar-hilmy)
+Controllers are functions that handle request logic and response rendering. You can define them in the `controllers/` directory.
+
+```js
+// controllers/indexController.js
+export const HomeController = (req, res) => {
+  res.render("home", {
+    title: "Express Minco",
+    layout: false,
+  });
+};
+```
 
 ---
 
-## ❤️ Inspired by
+## 🚦 Route Configuration
 
-* [Express Generator](https://expressjs.com/en/starter/generator.html)
-* [Laravel](https://laravel.com)
-* [CodeIgniter](https://codeigniter.com)
+Routes define the URL paths and connect them to controllers. Routes are registered in the `routes/` folder and loaded in `app.js`.
+
+```js
+// routes/index.js
+import express from "express";
+import { HomeController } from "../controllers/indexController.js";
+const router = express.Router();
+
+router.get("/", HomeController);
+
+export default router;
+```
 
 ---
+
+## 🧩 Layout Integration
+
+Layouts help you reuse a common structure across multiple pages. Layout support is configured using `express-ejs-layouts`.
+
+```js
+// app.js
+app.use(expressEjsLayouts);
+app.set("layout", "layouts/main");
+```
+
+```html
+<!-- views/layouts/main.ejs -->
+<body>
+  <%- include('../partials/header') %>
+  <main><%- body %></main>
+  <%- include('../partials/footer') %>
+</body>
+```
+
+---
+
+## 🔗 Partials (Header & Footer)
+
+Partials are reusable UI components. They're included in the main layout to maintain consistency across pages.
+
+```html
+<!-- views/partials/header.ejs -->
+<header class="py-4 px-6 bg-gray-800 text-white text-xl font-bold">
+  Express Minco 🚀
+</header>
+```
+
+```html
+<!-- views/partials/footer.ejs -->
+<footer class="py-4 px-6 bg-gray-800 text-gray-400 text-sm text-center">
+  &copy; 2025 Express Minco. All rights reserved.
+</footer>
+```
+
+---
+
+## ⚙️ Configuration
+
+You can configure environment, port, and more using the `.env` file:
+
+```env
+# App Config
+PROJECT_NAME="Express MVC"
+PORT=3000
+# development / production
+NODE_ENV=development
+
+# API Config
+API_BASE_URL=""
+API_KEY=""
+
+# DB Config
+DB_HOST=""
+DB_PORT=3306
+DB_USER="root"
+DB_PASS=""
+DB_NAME=""
+```

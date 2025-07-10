@@ -1,4 +1,3 @@
-// app.js
 import createError from "http-errors";
 import express from "express";
 import path from "path";
@@ -46,6 +45,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// Handle well-known paths to suppress unnecessary 404 logs
+app.use('/.well-known', (req, res, next) => {
+  res.status(204).end();
+});
+
+
 // ERROR HANDLER
 app.use((req, res, next) => {
   next(createError(404));
@@ -61,9 +66,10 @@ app.use((err, req, res, next) => {
   };
 
   const statusCode = err.status || 500;
+  const url = `\x1b[36m${req.originalUrl}\x1b[0m`;
 
   console.error(
-    `\x1b[37m\x1b[40m${new Date().toISOString()}\x1b[0m  \x1b[31m${statusCode}\x1b[0m → ${
+    `\x1b[37m\x1b[40m${new Date().toISOString()}\x1b[0m \x1b[31m${statusCode} - ${url} \x1b[0m → ${
       err.message
     }`
   );

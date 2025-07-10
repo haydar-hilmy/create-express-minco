@@ -34,21 +34,23 @@ Inspired by frameworks like **Laravel** and **CodeIgniter4**, this template merg
 ```
 
 my-app/
-├── app.js
 ├── bin/
-├── public/
-│   └── ...
-├── routes/
-│   └── index.js
-├── views/
+├── config/
 │   └── ...
 ├── controllers/
 │   └── ...
+├── middleware/
+│   └── ...
 ├── models/
 │   └── ...
-├── middleware/
-│   └── auth.js
+├── public/
+│   └── ...
+├── routes/
+│   └── ...
+├── views/
+│   └── ...
 ├── .env
+├── app.js
 └── package.json
 
 ````
