@@ -1,0 +1,59 @@
+<div class="max-w-4xl mx-auto text-gray-200 space-y-12">
+  <h1 class="text-4xl md:text-5xl font-bold mb-6 text-center animate-fade-in">Documentation</h1>
+
+  <!-- Section 1 -->
+  <section class="animate-fade-in delay-100">
+    <h2 class="text-2xl font-semibold mb-2">📦 Installation</h2>
+    <p class="text-gray-300 mb-2">To install the package, run the following command:</p>
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>
+npm i create-express-minco
+</code></pre>
+  </section>
+
+  <!-- Section 2 -->
+  <section class="animate-fade-in delay-200">
+    <h2 class="text-2xl font-semibold mb-2">🚀 Getting Started</h2>
+    <p class="text-gray-300 mb-2">Once installed, create a new instance:</p>
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm">
+        <code>
+const app = require('express')();
+const { bootstrap } = require('express-mvc-starter');
+
+bootstrap(app);
+</code>
+</pre>
+  </section>
+
+  <!-- Section 3 -->
+  <section class="animate-fade-in delay-300">
+    <h2 class="text-2xl font-semibold mb-2">🗂 Folder Structure</h2>
+    <p class="text-gray-300 mb-2">This package follows MVC structure like Laravel or CodeIgniter:</p>
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>├── controllers/
+├── models/
+├── views/
+├── routes/
+├── config/
+└── public/</code></pre>
+  </section>
+
+  <!-- Section 4 -->
+  <section class="animate-fade-in delay-500">
+    <h2 class="text-2xl font-semibold mb-2">📘 Example Route</h2>
+    <p class="text-gray-300 mb-2">Define routes using the MVC approach:</p>
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm"><code>// routes/web.js
+router.get('/', HomeController.index);</code></pre>
+  </section>
+
+  <!-- Section 5 -->
+  <section class="animate-fade-in delay-500">
+    <h2 class="text-2xl font-semibold mb-2">⚙️ Configuration</h2>
+    <p class="text-gray-300 mb-2">You can configure environment, port, and more using the `.env` file:</p>
+    <pre class="bg-gray-800 p-4 rounded-md overflow-x-auto text-sm">
+        <code>
+PORT=3000
+PROJECT_NAME="Express Minco"
+NODE_ENV=development
+        </code>
+    </pre>
+  </section>
+</div>

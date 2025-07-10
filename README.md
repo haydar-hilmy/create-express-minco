@@ -1,6 +1,16 @@
 # 🚀 create-express-minco
 
-**Create an Express.js project scaffold with modern conventions, MVC structure, ES6 support, and built-in JWT authentication.**  
+> Scaffold a modern Express.js project in seconds with MVC, TailwindCSS, and EJS
+
+---
+
+### 📥 Install via NPX
+
+```bash
+npx create-express-minco my-app
+```
+
+**Create an Express.js project scaffold with modern conventions, MVC structure, ES6 support, and built-in JWT authentication (soon).**  
 Inspired by frameworks like **Laravel** and **CodeIgniter4**, this template merges backend and frontend into one clean, scalable folder.
 
 ---

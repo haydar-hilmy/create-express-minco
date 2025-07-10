@@ -1,12 +1,13 @@
-import express from 'express';
-import { helloController } from '../controllers/indexController.js';
+import express from "express";
+import { DocsController, helloController, HomeController } from "../controllers/indexController.js";
+import { title } from "process";
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('home', { title: 'Express Minco' });
-});
+router.get("/", HomeController);
 
-router.get('/hello', helloController);
+router.get("/docs", DocsController)
+
+router.get("/hello", helloController);
 
 export default router;

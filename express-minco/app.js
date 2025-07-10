@@ -1,14 +1,15 @@
 // app.js
-import createError from 'http-errors';
-import express from 'express';
-import path from 'path';
-import cookieParser from 'cookie-parser';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import coreRouter from './routes/index.js';
-import { setupLiveReload } from './middleware/core/liveReload.js';
-import { logRequest } from './middleware/core/logRequest.js';
-import dotenv from 'dotenv';
+import createError from "http-errors";
+import express from "express";
+import path from "path";
+import cookieParser from "cookie-parser";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import coreRouter from "./routes/index.js";
+import { setupLiveReload } from "./middleware/core/liveReload.js";
+import { logRequest } from "./middleware/core/logRequest.js";
+import dotenv from "dotenv";
+import expressEjsLayouts from "express-ejs-layouts";
 
 dotenv.config();
 
@@ -18,44 +19,57 @@ const __dirname = dirname(__filename);
 const app = express();
 
 setupLiveReload(app);
-console.log('mode: ', app.get('env'));
+console.log("mode: ", app.get("env"));
 app.use(logRequest);
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/', coreRouter);
+// EJS LAYOUTS
+app.use((req, res, next) => {
+  res.locals.title ??= `${process.env.PROJECT_NAME || "Express Minco"}`;
+  next();
+});
+app.use(expressEjsLayouts);
+app.set("layout", "layouts/main");
+
+// ROUTES CONFIGURE
+app.use("/", coreRouter);
 
 app.use((req, res, next) => {
-  res.locals.env = req.app.get('env');
+  res.locals.env = req.app.get("env");
   next();
 });
 
+// ERROR HANDLER
 app.use((req, res, next) => {
   next(createError(404));
 });
 
 app.use((err, req, res, next) => {
   res.locals.message = err.message;
-  res.locals.env = req.app.get('env');
+  res.locals.env = req.app.get("env");
 
   res.locals.error = {
     status: err.status,
-    stack: req.app.get('env') === 'development' ? err.stack : null,
+    stack: req.app.get("env") === "development" ? err.stack : null,
   };
 
   const statusCode = err.status || 500;
 
-  console.error(`\x1b[37m\x1b[40m${new Date().toISOString()}\x1b[0m  \x1b[31m${statusCode}\x1b[0m → ${err.message}`);
+  console.error(
+    `\x1b[37m\x1b[40m${new Date().toISOString()}\x1b[0m  \x1b[31m${statusCode}\x1b[0m → ${
+      err.message
+    }`
+  );
 
   res.status(err.status || 500);
-  res.render('error');
+  res.render("error");
 });
-
 
 export default app;
